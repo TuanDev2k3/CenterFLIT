@@ -137,3 +137,4 @@ G:\CenterFlit\APICenterFlit\obj\Debug\net8.0\APICenterFlit.pdb
 G:\CenterFlit\APICenterFlit\obj\Debug\net8.0\APICenterFlit.genruntimeconfig.cache
 G:\CenterFlit\APICenterFlit\obj\Debug\net8.0\ref\APICenterFlit.dll
 G:\CenterFlit\APICenterFlit\bin\Debug\net8.0\BCrypt.Net.dll
+G:\CenterFlit\APICenterFlit\obj\Debug\net8.0\APICenterFlit.sourcelink.json

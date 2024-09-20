@@ -10,7 +10,7 @@ namespace APICenterFlit.Repositories.Portal
 	public interface IContentTypeService
 	{
 		Task<Response> GetListAsync();
-		Task<Response> GetById(int id);
+		Task<Response> EditById(int id);
 		Task<Response> Create(ContentTypeDTO model, int userId);
 		Task<Response> Update(ContentTypeDTO model, int id, int userId);
 		Task<Response> Delete(int id, int userId);
@@ -38,7 +38,8 @@ namespace APICenterFlit.Repositories.Portal
 				await _db.ContentTypes.AddAsync(data);
 				await _db.SaveChangesAsync();
 
-				res.Status = 201;
+                res.Result = 1;
+                res.Status = 201;
 				res.Message = "Thêm dữ liệu thành công !!";
 			}
 			catch (Exception ex)
@@ -61,7 +62,8 @@ namespace APICenterFlit.Repositories.Portal
 					data.UpdatedAt = DateTime.Now;
 					data.UpdatedBy = userId;
 					await _db.SaveChangesAsync();
-					res.Status = 200;
+                    res.Result = 1;
+                    res.Status = 200;
 					res.Message = "Xóa dữ liệu thành công !!";
 				}
 				else
@@ -78,7 +80,7 @@ namespace APICenterFlit.Repositories.Portal
 			return res;
 		}
 
-		public async Task<Response> GetById(int id)
+		public async Task<Response> EditById(int id)
 		{
 			Response res = new Response();
 			try
@@ -88,7 +90,8 @@ namespace APICenterFlit.Repositories.Portal
 				{
 					ContentTypeDTO model = new ContentTypeDTO();
 					_mapper.Map(data, model);
-					res.Status = 200;
+                    res.Result = 1;
+                    res.Status = 200;
 					res.Message = "Lấy dữ liệu thành công !!";
 					res.Data = model;
 				}
@@ -114,7 +117,8 @@ namespace APICenterFlit.Repositories.Portal
 				var data = await _db.ContentTypes.Where(a => a.Status == 1).ToListAsync();
 				List<ContentTypeDTO> model = new List<ContentTypeDTO>();
 				_mapper.Map(data, model);
-				res.Status = 200;
+                res.Result = 1;
+                res.Status = 200;
 				res.Message = "Lấy dữ liệu thành công";
 				res.Data = model;
 			}
@@ -140,7 +144,8 @@ namespace APICenterFlit.Repositories.Portal
 					data.UpdatedBy = userId;
 					_db.ContentTypes.Update(data);
 					await _db.SaveChangesAsync();
-					res.Status = 204;
+                    res.Result = 1;
+                    res.Status = 204;
 					res.Message = "Sửa dữ liệu thành công !!";
 				}
 				else

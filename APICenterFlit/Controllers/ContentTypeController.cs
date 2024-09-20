@@ -33,11 +33,11 @@ namespace APICenterFlit.Controllers
 		}
 
 		[HttpGet]
-		public async Task<Response> GetById(int id)
+		public async Task<Response> EditById(int id)
 		{
 			try
 			{
-				res = await _service.GetById(id);
+				res = await _service.EditById(id);
 			}
 			catch (Exception ex)
 			{

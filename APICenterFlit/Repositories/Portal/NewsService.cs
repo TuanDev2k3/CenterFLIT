@@ -10,7 +10,7 @@ namespace APICenterFlit.Repositories.Portal
 	public interface INewsService
 	{
 		Task<Response> GetListAsync();
-		Task<Response> GetById(int id);
+		Task<Response> EditById(int id);
 		Task<Response> Create(NewsDTO model, int userId);        
 		Task<Response> Update(NewsDTO model, int id, int userId);
 		Task<Response> Delete(int id, int userId);
@@ -81,16 +81,17 @@ namespace APICenterFlit.Repositories.Portal
 			return res;
 		}
 
-		public async Task<Response> GetById(int id)
+		public async Task<Response> EditById(int id)
 		{
 			Response res = new Response();
 			try
 			{
-				var data = await _db.News.Where(a => a.Status == 1 && a.Id == id).FirstOrDefaultAsync();
+				var data = await _db.News.Include(nt => nt.NewsType).Where(a => a.Status == 1 && a.Id == id).FirstOrDefaultAsync();
 				if (data != null)
 				{
 					NewsDTO model = new NewsDTO();
 					_mapper.Map(data, model);
+					model.NewsTypeName = data.NewsType.Title;
 					res.Result = 1;
 					res.Status = 200;
 					res.Message = "Lấy dữ liệu thành công !!";
@@ -115,9 +116,17 @@ namespace APICenterFlit.Repositories.Portal
 			Response res = new Response();
 			try
 			{
-				var data = await _db.News.Where(a => a.Status == 1).ToListAsync();
+				var data = await _db.News.Include(nt => nt.NewsType).Where(a => a.Status == 1).ToListAsync();
 				List<NewsDTO> model = new List<NewsDTO>();
 				_mapper.Map(data, model);
+				foreach (var item in data)
+				{
+					var itemdto = model.FirstOrDefault(p => p.Id == item.Id);
+					if (itemdto != null)
+					{
+                        itemdto.NewsTypeName = item.NewsType.Title;
+                    }
+				}
 				res.Result = 1;
 				res.Status = 200;
 				res.Message = "Lấy dữ liệu thành công";

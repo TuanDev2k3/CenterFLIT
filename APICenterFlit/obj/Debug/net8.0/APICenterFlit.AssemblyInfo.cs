@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("APICenterFlit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aee34aa8c83b643473eb8089cd5e0f58768e3468")]
 [assembly: System.Reflection.AssemblyProductAttribute("APICenterFlit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("APICenterFlit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

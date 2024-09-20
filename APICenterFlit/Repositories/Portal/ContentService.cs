@@ -10,7 +10,7 @@ namespace APICenterFlit.Repositories.Portal
 	public interface IContentService
 	{
 		Task<Response> GetListAsync();
-		Task<Response> GetById(int id);
+		Task<Response> EditById(int id);
 		Task<Response> Create(ContentDTO model, int userId);
 		Task<Response> Update(ContentDTO model, int id, int userId);
 		Task<Response> Delete(int id, int userId);
@@ -38,7 +38,8 @@ namespace APICenterFlit.Repositories.Portal
 				await _db.Contents.AddAsync(data);
 				await _db.SaveChangesAsync();
 
-				res.Status = 201;
+                res.Result = 1;
+                res.Status = 201;
 				res.Message = "Thêm dữ liệu thành công !!";
 			}
 			catch (Exception ex)
@@ -61,7 +62,8 @@ namespace APICenterFlit.Repositories.Portal
 					data.UpdatedAt = DateTime.Now;
 					data.UpdatedBy = userId;
 					await _db.SaveChangesAsync();
-					res.Status = 200;
+                    res.Result = 1;
+                    res.Status = 200;
 					res.Message = "Xóa dữ liệu thành công !!";
 				}
 				else
@@ -78,7 +80,7 @@ namespace APICenterFlit.Repositories.Portal
 			return res;
 		}
 
-		public async Task<Response> GetById(int id)
+		public async Task<Response> EditById(int id)
 		{
 			Response res = new Response();
 			try
@@ -88,7 +90,9 @@ namespace APICenterFlit.Repositories.Portal
 				{
 					ContentDTO model = new ContentDTO();
 					_mapper.Map(data, model);
-					res.Status = 200;
+                    model.ContentTypeName = data.ContentType.Title;
+                    res.Result = 1;
+                    res.Status = 200;
 					res.Message = "Lấy dữ liệu thành công !!";
 					res.Data = model;
 				}
@@ -111,10 +115,19 @@ namespace APICenterFlit.Repositories.Portal
 			Response res = new Response();
 			try
 			{
-				var data = await _db.Contents.Where(a => a.Status == 1).ToListAsync();
+				var data = await _db.Contents.Include(p => p.ContentType).Where(a => a.Status == 1).ToListAsync();
 				List<ContentDTO> model = new List<ContentDTO>();
 				_mapper.Map(data, model);
-				res.Status = 200;
+                foreach (var item in data)
+                {
+                    var itemdto = model.FirstOrDefault(p => p.Id == item.Id);
+                    if (itemdto != null)
+                    {
+                        itemdto.ContentTypeName = item.ContentType.Title;
+                    }
+                }
+                res.Result = 1;
+                res.Status = 200;
 				res.Message = "Lấy dữ liệu thành công";
 				res.Data = model;
 			}
@@ -140,7 +153,8 @@ namespace APICenterFlit.Repositories.Portal
 					data.UpdatedBy = userId;
 					_db.Contents.Update(data);
 					await _db.SaveChangesAsync();
-					res.Status = 204;
+                    res.Result = 1;
+                    res.Status = 204;
 					res.Message = "Sửa dữ liệu thành công !!";
 				}
 				else

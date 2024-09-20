@@ -10,7 +10,7 @@ namespace APICenterFlit.Repositories.Portal
 	public interface IAccountService
 	{
 		Task<Response> GetListAsync();
-		Task<Response> GetById(int id);
+		Task<Response> EditById(int id);
 		Task<Response> Create(AccountDTO model, int userId);
 		Task<Response> Update(AccountDTO model, int id, int userId);
 		Task<Response> Delete(int id, int userId);
@@ -38,12 +38,14 @@ namespace APICenterFlit.Repositories.Portal
 					data.UpdatedAt = DateTime.Now;
 					data.UpdatedBy = userId;
 					await _db.SaveChangesAsync();
+					res.Result = 1;
 					res.Status = 204;
 					res.Message = "Thay đổi mật khẩu thành công !!";
 				}
 				else
 				{
-					res.Status = 401;
+                    res.Result = 0;
+                    res.Status = 401;
 					res.Message = "Không tìm thấy tài khoản hoặc mật khẩu cũ không chính xác !!";
 				}
 			}
@@ -71,12 +73,14 @@ namespace APICenterFlit.Repositories.Portal
 				await _db.Accounts.AddAsync(data);
 				await _db.SaveChangesAsync();
 
-				res.Status = 201;
+                res.Result = 1;
+                res.Status = 201;
 				res.Message = "Thêm dữ liệu thành công !!";
 			}
 			catch (Exception ex)
 			{
-				res.Status = 400;
+                res.Result = 0;
+                res.Status = 400;
 				res.Message = ex.InnerException?.Message ?? ex.Message;
 			}
 			return res;
@@ -94,7 +98,8 @@ namespace APICenterFlit.Repositories.Portal
 					data.UpdatedAt = DateTime.Now;
 					data.UpdatedBy = userId;
 					await _db.SaveChangesAsync();
-					res.Status = 200;
+                    res.Result = 1;
+                    res.Status = 200;
 					res.Message = "Xóa dữ liệu thành công !!";
 				}
 				else
@@ -111,7 +116,7 @@ namespace APICenterFlit.Repositories.Portal
 			return res;
 		}
 
-		public async Task<Response> GetById(int id)
+		public async Task<Response> EditById(int id)
 		{
 			Response res = new Response();
 			try
@@ -121,7 +126,9 @@ namespace APICenterFlit.Repositories.Portal
 				{
 					AccountDTO model = new AccountDTO();
 					_mapper.Map(data, model);
-					res.Status = 200;
+					model.Password = "?????";
+                    res.Result = 1;
+                    res.Status = 200;
 					res.Message = "Lấy dữ liệu thành công !!";
 					res.Data = model;
 				}
@@ -147,7 +154,12 @@ namespace APICenterFlit.Repositories.Portal
 				var data = await _db.Accounts.Where(a => a.Status == 1).ToListAsync();
 				List<AccountDTO> model = new List<AccountDTO>();
 				_mapper.Map(data, model);
-				res.Status = 200;
+                foreach (var account in model)
+				{
+					account.Password = "?????";
+				}
+                res.Result = 1;
+                res.Status = 200;
 				res.Message = "Lấy dữ liệu thành công";
 				res.Data = model;
 			}
@@ -176,7 +188,8 @@ namespace APICenterFlit.Repositories.Portal
 					data.UpdatedBy = userId;
 					_db.Accounts.Update(data);
 					await _db.SaveChangesAsync();
-					res.Status = 204;
+                    res.Result = 1;
+                    res.Status = 204;
 					res.Message = "Sửa dữ liệu thành công !!";
 				}
 				else

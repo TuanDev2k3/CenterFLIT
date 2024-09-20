@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "G:\\CenterFlit\\APICenterFlit\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AAF1FC59-3AB5-4EB6-8858-7772BD9CAB2E}|APICenterFlit.csproj|g:\\centerflit\\apicenterflit\\repositories\\portal\\newsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AAF1FC59-3AB5-4EB6-8858-7772BD9CAB2E}|APICenterFlit.csproj|solutionrelative:repositories\\portal\\newsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AAF1FC59-3AB5-4EB6-8858-7772BD9CAB2E}|APICenterFlit.csproj|g:\\centerflit\\apicenterflit\\helper\\response.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AAF1FC59-3AB5-4EB6-8858-7772BD9CAB2E}|APICenterFlit.csproj|solutionrelative:helper\\response.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AAF1FC59-3AB5-4EB6-8858-7772BD9CAB2E}|APICenterFlit.csproj|g:\\centerflit\\apicenterflit\\repositories\\portal\\contentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAF1FC59-3AB5-4EB6-8858-7772BD9CAB2E}|APICenterFlit.csproj|solutionrelative:repositories\\portal\\contentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,27 +59,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "NewsService.cs",
-              "DocumentMoniker": "G:\\CenterFlit\\APICenterFlit\\Repositories\\Portal\\NewsService.cs",
-              "RelativeDocumentMoniker": "Repositories\\Portal\\NewsService.cs",
-              "ToolTip": "G:\\CenterFlit\\APICenterFlit\\Repositories\\Portal\\NewsService.cs",
-              "RelativeToolTip": "Repositories\\Portal\\NewsService.cs",
-              "ViewState": "AQIAAG4AAAAAAAAAAAAUwHoAAAArAAAA",
+              "Title": "ContentService.cs",
+              "DocumentMoniker": "G:\\CenterFlit\\APICenterFlit\\Repositories\\Portal\\ContentService.cs",
+              "RelativeDocumentMoniker": "Repositories\\Portal\\ContentService.cs",
+              "ToolTip": "G:\\CenterFlit\\APICenterFlit\\Repositories\\Portal\\ContentService.cs",
+              "RelativeToolTip": "Repositories\\Portal\\ContentService.cs",
+              "ViewState": "AQIAAGYAAAAAAAAAAAAkwHsAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T05:35:26.424Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Response.cs",
-              "DocumentMoniker": "G:\\CenterFlit\\APICenterFlit\\Helper\\Response.cs",
-              "RelativeDocumentMoniker": "Helper\\Response.cs",
-              "ToolTip": "G:\\CenterFlit\\APICenterFlit\\Helper\\Response.cs",
-              "RelativeToolTip": "Helper\\Response.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAxwAUAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T05:34:21.899Z",
+              "WhenOpened": "2024-09-20T04:05:37.788Z",
               "EditorCaption": ""
             }
           ]

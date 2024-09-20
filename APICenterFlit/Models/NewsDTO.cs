@@ -6,6 +6,8 @@
 
 		public int NewsTypeId { get; set; }
 
+		public string? NewsTypeName { get; set; }
+
 		public string? NewstypeIdList { get; set; }
 
 		public string Title { get; set; } = null!;

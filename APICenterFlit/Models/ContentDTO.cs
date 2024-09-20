@@ -6,6 +6,8 @@
 
 		public int ContentTypeId { get; set; }
 
+		public string? ContentTypeName { get; set; }
+
 		public string Title { get; set; } = null!;
 
 		public string? TitleSlug { get; set; }
